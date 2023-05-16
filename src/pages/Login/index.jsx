@@ -8,13 +8,15 @@ import {zodResolver} from '@hookform/resolvers/zod';
 
 const schema = z.object({
     email: z.string()
-        .email()
+        .email('O campo email deve ser um email válido')
         .nonempty('O campo email não pode ser vazio'),
-    senha: z.string().min(6).max(10),
+    senha: z.string().min(6, 'A senha deve ter no mínimo 6 caracteres')
 });
 
 function Login() {
-    const {register, handleSubmit} = useForm({
+    const {register, handleSubmit, 
+        formState: { errors}
+    } = useForm({
         resolver: zodResolver(schema),
     });
 
@@ -33,6 +35,7 @@ function Login() {
                     }}
                         >Email</Form.Label>
                     <Form.Control className='input' {...register('email')}/>
+                    {errors.email && <span>{errors.email.message}</span>}
                 </Form.Group>
                 <Form.Group controlId="Password" >
                     <Form.Label style={{
@@ -42,6 +45,7 @@ function Login() {
                         fontSize: '1.3REM',
                     }} >Password </Form.Label>
                     <Form.Control className='input'  {...register('senha')}/>
+                    {errors.senha && <span>{errors.senha.message}</span>}
                 </Form.Group>
                 <Button variant="dark" type="submit" style={{marginTop: '20px'}}>Entrar</Button>
             </Form>

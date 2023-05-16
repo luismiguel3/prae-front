@@ -3,9 +3,20 @@ import { useForm } from 'react-hook-form';
 import './styles.css';
 import { Form } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
+import { z } from 'zod';
+import {zodResolver} from '@hookform/resolvers/zod';
+
+const schema = z.object({
+    email: z.string()
+        .email()
+        .nonempty('O campo email não pode ser vazio'),
+    senha: z.string().min(6).max(10),
+});
 
 function Login() {
-    const {register, handleSubmit} = useForm();
+    const {register, handleSubmit} = useForm({
+        resolver: zodResolver(schema),
+    });
 
     function onSubmit(data) {
         console.log(data);
@@ -32,7 +43,7 @@ function Login() {
                     }} >Password </Form.Label>
                     <Form.Control className='input'  {...register('senha')}/>
                 </Form.Group>
-                <Button variant="dark" style={{marginTop: '20px'}}>Entrar</Button>
+                <Button variant="dark" type="submit" style={{marginTop: '20px'}}>Entrar</Button>
             </Form>
         </div>
     );

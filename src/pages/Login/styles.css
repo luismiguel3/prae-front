@@ -1,20 +1,18 @@
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
-}
 
 .input {
-    width: 300px;
     height: 30px;
-    border-radius: 5px;
+    border-radius: 3px;
     border: 1px solid #847c7c;
     padding: 0 10px;
     margin-bottom: 0.5rem;
     margin-top: 0.5rem;
     box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.60);
 }
+
+.submit-button{
+    background: linear-gradient(181.32deg, rgba(255, 255, 255, 0.567) -22.6%, #0050DC 98.87%);
+    border: 1px solid #000000;
+    border-radius: 10px;
+}
+
 

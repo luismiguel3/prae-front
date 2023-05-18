@@ -31,7 +31,7 @@ function Login() {
                 <Container fluid className='d-flex align-items-center justify-content-center' style={{height: '100vh'}}>
                     <Form onSubmit={handleSubmit(onSubmit)} style={{width:'100%'}}>
                         <Row md={1} className="justify-content-center"  > 
-                            <Col md={4}>
+                            <Col md={7}>
                                 <Form.Group controlId="Email">
                                     <Form.Label style={{ 
                                         fontWeight: 'bold',
@@ -45,7 +45,7 @@ function Login() {
                             </Col>
                         </Row>
                         <Row md={1} className="justify-content-center"  >
-                            <Col md={4}>
+                            <Col md={7}>
                                 <Form.Group controlId="Password" >
                                     <Form.Label style={{
                                         marginBottom: '10px',
@@ -59,9 +59,11 @@ function Login() {
                                 <FormGroup className='text-center'>
                                     <Button variant="dark" type="submit" size="lg" className='px-5 submit-button'style={{marginTop:'20px'}}>Entrar</Button>
                                 </FormGroup>
-                                <FormGroup className='d-flex justify-content-between' style={{marginTop:"20px"}} >
-                                    <NavLink href='/cadastro' style={{color: "#1177BB", marginLeft:"30px", fontSize: "17px"}}>Cadastre-se</NavLink>
-                                    <NavLink href='/recuperar-senha' style={{color: "#1177BB",fontSize: "17px"}}>Esqueceu a senha?</NavLink>
+                                <FormGroup className='text-buttons' style={{marginTop:"20px", flexWrap: "nowrap"}}>
+                                    <div className="button-wrapper">
+                                        <NavLink href='/cadastro' style={{color: "#1177BB", fontSize: "17px", marginRight: "50px", marginLeft: "40px"}}>Cadastre-se</NavLink>
+                                        <NavLink href='/recuperar-senha' style={{color: "#1177BB", fontSize: "17px" }}>Esqueceu a senha?</NavLink>
+                                    </div>
                                 </FormGroup>
                             </Col>
                         </Row>

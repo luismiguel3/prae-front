@@ -24,45 +24,52 @@ function Login() {
     }
 
     return (
-        <Container fluid className='d-flex align-items-center justify-content-center' style={{height: '100vh'}}>
-            <Form onSubmit={handleSubmit(onSubmit)} style={{width:'100%'}}>
-                <Row md={1} className="justify-content-center"  > 
-                    <Col md={4}>
-                        <Form.Group controlId="Email">
-                            <Form.Label style={{ 
-                                fontWeight: 'bold',
-                                fontSize: '1.3REM', 
-                                marginBottom: '10px'   
-                            }}
-                                >Email</Form.Label>
-                            <Form.Control className='input' {...register('email')}/>
-                            {errors.email && <span>{errors.email.message}</span>}
-                        </Form.Group>
-                    </Col>
-                </Row>
-                <Row md={1} className="justify-content-center"  >
-                    <Col md={4}>
-                        <Form.Group controlId="Password" >
-                            <Form.Label style={{
-                                marginBottom: '10px',
-                                marginTop: '20px',
-                                fontWeight: 'bold',
-                                fontSize: '1.3REM',
-                            }} >Senha </Form.Label>
-                            <Form.Control className='input'  {...register('senha')}/>
-                            {errors.senha && <span>{errors.senha.message}</span>}
-                        </Form.Group>
-                        <FormGroup className='text-center'>
-                            <Button variant="dark" type="submit" size="lg" className='px-5 submit-button'style={{marginTop:'20px'}}>Entrar</Button>
-                        </FormGroup>
-                        <FormGroup className='d-flex justify-content-between' style={{marginTop:"20px"}} >
-                            <NavLink href='/cadastro' style={{color: "#1177BB", marginLeft:"30px", fontSize: "17px"}}>Cadastre-se</NavLink>
-                            <NavLink href='/recuperar-senha' style={{color: "#1177BB",fontSize: "17px"}}>Esqueceu a senha?</NavLink>
-                        </FormGroup>
-                    </Col>
-                </Row>
-            </Form>
-        </Container>
+    <>
+        <div class="background-image"></div>
+        <div class="login-screen">
+            <div class="login-container">
+                <Container fluid className='d-flex align-items-center justify-content-center' style={{height: '100vh'}}>
+                    <Form onSubmit={handleSubmit(onSubmit)} style={{width:'100%'}}>
+                        <Row md={1} className="justify-content-center"  > 
+                            <Col md={4}>
+                                <Form.Group controlId="Email">
+                                    <Form.Label style={{ 
+                                        fontWeight: 'bold',
+                                        fontSize: '1.3REM', 
+                                        marginBottom: '10px'   
+                                    }}
+                                        >Email</Form.Label>
+                                    <Form.Control className='input' {...register('email')}/>
+                                    {errors.email && <span>{errors.email.message}</span>}
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row md={1} className="justify-content-center"  >
+                            <Col md={4}>
+                                <Form.Group controlId="Password" >
+                                    <Form.Label style={{
+                                        marginBottom: '10px',
+                                        marginTop: '20px',
+                                        fontWeight: 'bold',
+                                        fontSize: '1.3REM',
+                                    }} >Senha </Form.Label>
+                                    <Form.Control className='input'  {...register('senha')}/>
+                                    {errors.senha && <span>{errors.senha.message}</span>}
+                                </Form.Group>
+                                <FormGroup className='text-center'>
+                                    <Button variant="dark" type="submit" size="lg" className='px-5 submit-button'style={{marginTop:'20px'}}>Entrar</Button>
+                                </FormGroup>
+                                <FormGroup className='d-flex justify-content-between' style={{marginTop:"20px"}} >
+                                    <NavLink href='/cadastro' style={{color: "#1177BB", marginLeft:"30px", fontSize: "17px"}}>Cadastre-se</NavLink>
+                                    <NavLink href='/recuperar-senha' style={{color: "#1177BB",fontSize: "17px"}}>Esqueceu a senha?</NavLink>
+                                </FormGroup>
+                            </Col>
+                        </Row>
+                    </Form>
+                </Container>
+            </div>
+        </div>
+    </>
     );
 }
 

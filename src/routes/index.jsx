@@ -3,6 +3,7 @@ import React, { useState, useContext } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, AuthContext } from "../context/auth";
 import  Login  from "../pages/Login";
+import Cadastro from "../pages/Cadastro";
 
 const RoutesFunction = () => {
     const Private = ({ children }) => {
@@ -20,6 +21,7 @@ const RoutesFunction = () => {
             <Routes>
                 
                 <Route path="/" element={<Login/>} />
+                <Route path="/cadastro" element={<Cadastro/>} />
                {/*
                 <Route
                     path="/dashboard"

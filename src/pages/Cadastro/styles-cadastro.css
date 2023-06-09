@@ -1,0 +1,70 @@
+.login-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.login-container {
+    width: 25%;
+    height: 70%;
+    background-color: rgba(245, 245, 245, 0.9);
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+   
+.background-image {
+    background-image: url('/public/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+}
+  
+.background-image::before {
+    content: "";
+    background-image: url('/public/ufsm-logo.png');
+    background-size: 35%;
+    background-position: 50% 50%;
+    filter: blur(3px);
+    background-repeat: no-repeat;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+
+.text-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.button-wrapper {
+    display: flex;
+    gap: 50px;
+    white-space: nowrap;
+}
+
+.input {
+    height: 30px;
+    border-radius: 3px;
+    border: 1px solid #847c7c;
+    padding: 0 10px;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.60);
+}
+
+.submit-button{
+    background: linear-gradient(181.32deg, rgba(255, 255, 255, 0.567) -22.6%, #0050DC 98.87%);
+    border: 1px solid #000000;
+    border-radius: 10px;
+}

@@ -29,9 +29,9 @@ function Login() {
 
     return (
     <>
-        <div class="background-image"></div>
-        <div class="login-screen">
-            <div class="login-container">
+        <div className="background-image"></div>
+        <div className="login-screen">
+            <div className="login-container">
                 <Container fluid className='d-flex align-items-center justify-content-center' style={{height: '100vh', width:'300vw'}}>
                     <Form onSubmit={handleSubmit(onSubmit)} style={{width:'100%'}}>
                         <Row className="justify-content-center"  > 

@@ -4,6 +4,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, AuthContext } from "../context/auth";
 import  Login  from "../pages/Login";
 import Cadastro from "../pages/Cadastro";
+import Dashboard from "../pages/Dashboard";
 
 const RoutesFunction = () => {
     const Private = ({ children }) => {
@@ -22,6 +23,7 @@ const RoutesFunction = () => {
                 
                 <Route path="/" element={<Login/>} />
                 <Route path="/cadastro" element={<Cadastro/>} />
+                <Route path="/dashboard" element={<Dashboard/>} />
                {/*
                 <Route
                     path="/dashboard"

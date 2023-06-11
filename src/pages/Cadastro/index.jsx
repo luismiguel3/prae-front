@@ -1,16 +1,18 @@
-import React from 'react';
+import { useState, useContext, useNavigate } from 'react';
 import { useForm } from 'react-hook-form';
 import './styles-cadastro.css';
 import { Container, Form, Button, Row, Col, FormGroup, NavLink } from 'react-bootstrap';
 import { z } from 'zod';
 import {zodResolver} from '@hookform/resolvers/zod';
+import api from "../../services/api";
 
 const schema = z.object({
     email: z.string()
         .email('O campo email deve ser um email válido')
         .nonempty('O campo email não pode ser vazio'),
     senha: z.string().min(6, 'A senha deve ter no mínimo 6 caracteres'),
-    nome: z.string().nonempty('O campo nome não pode ser vazio')
+    nome: z.string().nonempty('O campo nome não pode ser vazio'),
+    curso: z.string().nonempty('O campo curso não pode ser vazio')
 });
 
 function Cadastro() {
@@ -20,8 +22,18 @@ function Cadastro() {
         resolver: zodResolver(schema),
     });
 
-    function onSubmit(data) {
-        console.log(data);
+    const onSubmit = async (event) => {
+        try {
+            const data = await api.post("/users/", {
+                nome: event.nome,
+                curso: event.curso,
+                email: event.email,
+                senha: event.senha,
+                tipo: 3,
+            });
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
@@ -42,6 +54,20 @@ function Cadastro() {
                                         >Nome Completo</Form.Label>
                                     <Form.Control className='input' style={{marginBottom: "25px"}} {...register('nome')}/>
                                     {errors.nome && <div>{errors.nome.message}</div>}
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row className="justify-content-center" > 
+                            <Col md={8}>
+                                <Form.Group controlId="Curso">
+                                    <Form.Label style={{ 
+                                        fontWeight: 'bold',
+                                        fontSize: '1.3REM', 
+                                        marginBottom: '10px'   
+                                    }}
+                                        >Curso</Form.Label>
+                                    <Form.Control className='input' style={{marginBottom: "25px"}} {...register('curso')}/>
+                                    {errors.curso && <div>{errors.curso.message}</div>}
                                 </Form.Group>
                             </Col>
                         </Row>

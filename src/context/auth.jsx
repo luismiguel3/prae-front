@@ -18,26 +18,18 @@ export const AuthProvider = ({children}) => {
   }, []);
 
 
-  const login = async (email, password) => {
-    console.log(email, password);
-
-    const response =  await api.post("/login", {email, password})
-    console.log(response);
+  const login = async (email, senha) => {
+    const response =  await api.post("/login", {email, senha})
 
     const user = response.data.user;
-    const token = response.data.token
 
     localStorage.setItem("user", JSON.stringify(user));
-    localStorage.setItem("token", token);
 
-    api.defaults.headers.Authorization = `Bearer ${token}`;
     setUser(user);
     navigate("/dashboard");
   };
 
   const logout = () => {
-    
-    console.log("logout");
     setUser(null);
     api.defaults.headers.Authorization = null;
     localStorage.removeItem("user");

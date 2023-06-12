@@ -6,6 +6,8 @@ import { z } from 'zod';
 import {zodResolver} from '@hookform/resolvers/zod';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/auth';
+import { toast } from 'react-toastify';
+
 
 const schema = z.object({
     email: z.string()
@@ -23,8 +25,14 @@ function Login() {
         resolver: zodResolver(schema),
     });
 
-    function onSubmit(data) {
-        login(data.email, data.senha);
+    async function onSubmit(data) {
+        try {
+            await login(data.email, data.senha);
+            console.log('Logado com sucesso')
+        } catch {
+            toast.error('Credenciais inválidas');
+            console.log('Erro ao logar');
+        }
     }
 
     return (
@@ -61,12 +69,13 @@ function Login() {
                                     {errors.senha && <span>{errors.senha.message}</span>}
                                 </Form.Group>
                                 <FormGroup className='text-center'>
-                                    <Button variant="dark" type="submit" size="lg" className='px-5 submit-button'style={{marginTop:'20px'}}>Entrar</Button>
+                                    <Button variant="dark" type="submit" size="lg" className='px-5 submit-button'
+                                        style={{marginTop:'20px'}}>Entrar</Button>
                                 </FormGroup>
                                 <FormGroup className='text-buttons' style={{marginTop:"20px", flexWrap: "nowrap"}}>
                                     <div className="button-wrapper">
-                                        <NavLink href='/cadastro' style={{color: "#1177BB", fontSize: "17px", marginRight: "50px", marginLeft: "40px"}}>Cadastre-se</NavLink>
-                                        <NavLink href='/recuperar-senha' style={{color: "#1177BB", fontSize: "17px" }}>Esqueceu a senha?</NavLink>
+                                        <NavLink href='/cadastro' style={{color: "#1177BB", fontSize: '1REM', marginRight: "50px", marginLeft: "40px"}}>Cadastre-se</NavLink>
+                                        <NavLink href='/recuperar-senha' style={{color: "#1177BB", fontSize: '1REM' }}>Esqueceu a senha?</NavLink>
                                     </div>
                                 </FormGroup>
                             </Col>

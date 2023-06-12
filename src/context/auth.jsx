@@ -19,14 +19,23 @@ export const AuthProvider = ({children}) => {
 
 
   const login = async (email, senha) => {
-    const response =  await api.post("/login", {email, senha})
+    try { 
+      const response =  await api.post("/login", {email, senha})
 
-    const user = response.data.user;
+      const user = response.data.user;
+      const token = response.data.token
 
-    localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("token", token);
 
-    setUser(user);
-    navigate("/dashboard");
+      api.defaults.headers.Authorization = `Bearer ${token}`;
+      setUser(user);
+
+      setUser(user);
+      navigate("/dashboard");
+    } catch (error) {
+      throw new Error(error);
+    }
   };
 
   const logout = () => {

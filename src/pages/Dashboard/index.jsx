@@ -9,7 +9,8 @@ function Dashboard() {
         <div style={{display:"flex", border:"1px solid red"}}>
 
             <aside style={{height:"100vh", width:"18vw",border:"1px solid red", justifyContent:"center",alignItems:"center" }}>
-                <h1 style={{border:"1px solid black"}}>tem q alinhar no meio</h1>
+                <h1 style={{border:"1px solid black", marginTop:"30vh",fontSize:"2rem"}}>tem q alinhar no meio</h1>
+                <div style={{border:"1px solid black", fontSize:"2rem",textAlign:"center" }}>inicio</div>
             </aside>
 
             <div style={{alignItems:"start" ,marginLeft:"10%", marginTop:"8%"}}>

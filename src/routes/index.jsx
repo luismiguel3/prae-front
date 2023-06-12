@@ -8,17 +8,18 @@ import Dashboard from "../pages/Dashboard";
 
 const RoutesFunction = () => {
     const Private = ({ children, permission }) => {
-        const { authenticated, loading } = useContext(AuthContext);
-        console.log("eae")
+        const { authenticated, loading, user} = useContext(AuthContext);
         if (loading) {
             return <div>Carregando...</div>;
         }
 
-        // se tiver autenticado e tiver permissão retorna o children
-        // se não tiver autenticado redireciona para o login
-        
-        
-        //return authenticated ? children : <Navigate to="/" />;
+        if (!authenticated) {
+            return <Navigate to="/" />;
+        }
+        if (permission && permission.find(p => p == user?.tipo ) == undefined)  {
+            return <Navigate to="/" />;
+        }
+        return children;
     };
 
     return (
@@ -27,12 +28,20 @@ const RoutesFunction = () => {
                 
                 <Route path="/" element={<Login/>} />
                 <Route path="/cadastro" element={<Cadastro/>} />
-                <Route path="/dashboard" element={<Dashboard/>} />
+                <Route
+                    path="/dashboard"
+                    element={
+                        <Private >
+                            <Dashboard />
+                        </Private>
+                    }
+                />
+                
                {/*
                 <Route
                     path="/dashboard"
                     element={
-                        <Private permission={"admin"}>
+                        <Private permission={[1,2,3]}>
                             <Dashboard />
                         </Private>
                     }

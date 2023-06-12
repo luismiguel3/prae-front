@@ -12,6 +12,9 @@ import {
   Card,
   CardGroup,
 } from "react-bootstrap";
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 
 function Dashboard() {
   const livros = [
@@ -80,33 +83,49 @@ function Dashboard() {
       },
       
   ];
-
-  return (
+    return (
         <div style={{ display: "flex"}}>
-            <aside
-                style={{
-                height: "100vh",
-                width: "18vw",
-                border: "1px solid red",
-                justifyContent: "center",
-                alignItems: "center",
-                }}>
-                <h1
-                style={{
-                    border: "1px solid black",
-                    marginTop: "30vh",
-                    fontSize: "2rem",
-                }}>
-                tem q alinhar no meio
-                </h1>
-                <div
-                style={{
-                    border: "1px solid black",
-                    fontSize: "2rem",
-                    textAlign: "center",
-                }}>
-                inicio
+            <aside className="menu-left">
+                <div className="menu-logo">
+                    <a href="https://www.ufsm.br/pro-reitorias/prae/">
+                        <img src="/prae-logo.png" alt="PRAE" className="prae-logo"/>
+                    </a>
                 </div>
+                <List>
+                    <NavLink
+                        className="menu-left-items"
+                        style={{ marginTop: "30%" }}
+                        onClick={() => {
+                            window.location.href = "/acervo";
+                        }}
+                    >
+                    <ListItem button>
+                        <ListItemText primary="Acervo" className="menu-text" />
+                    </ListItem>
+                    </NavLink>
+
+                    <NavLink
+                    className="menu-left-items"
+                    onClick={() => {
+                        window.location.href = "/solicitacoes";
+                    }}
+                    >
+                    <ListItem button>
+                        <ListItemText primary="Solicitações" className="menu-text"  />
+                    </ListItem>
+                    </NavLink>
+
+                    <NavLink
+                    className="menu-left-items"
+                    onClick={() => {
+                        window.location.href = "/contato";
+                    }}
+                    >
+                    <ListItem button>
+                        <ListItemText primary="Contato" className="menu-text"  />
+                    </ListItem>
+                    </NavLink>
+                </List>
             </aside>
             <div style={{ marginLeft: "10%", marginTop: "10%", marginRight:"5%" }}>
                 <Row

@@ -1,0 +1,41 @@
+.menu-left {
+  text-align: center;
+  height: 100vh;
+  width: 18vw;
+  background-color: #004E80;
+}
+
+.menu-left-items {
+  margin-top: 70px;
+  font-size: 12px;
+  padding: 30px;
+  font-weight: bold;
+}
+
+.menu-logo {
+  height: 20%;
+  position: relative;
+  width: 100%;
+}
+
+.prae-logo {
+  height: 100%;
+  width: 100%;
+}
+
+.menu-text {
+  font-size: 25px;
+  color: white;
+  font-weight: bold;
+}
+
+.menu-icons {
+  font-size: 25px;
+  margin-left: 20px;
+  color: white;
+  font-weight: bold;
+}
+
+.menu-text.active {
+  color: red;
+}

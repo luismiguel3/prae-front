@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useContext } from 'react'; 
+import { AuthContext } from '../../context/auth';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -10,10 +12,10 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 
-const pages = ['Usuario da silva', 'Sair'];
-
 function Nav() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const { user, logout } = useContext(AuthContext);
+  console.log(user)
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -23,11 +25,19 @@ function Nav() {
     setAnchorElNav(null);
   };
 
+  const handleLogout = () => {
+    setAnchorElNav(null);
+    logout();
+  };
+
   return (
     <AppBar position="static" style={{ backgroundColor: '#004E80' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }}}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, justifyContent: 'flex-start' }}>
+            <Typography variant="body1" sx={{ my: 2, color: 'white', display: 'block' }}>
+              {user.name}
+            </Typography>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -56,23 +66,25 @@ function Nav() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={handleLogout}>
+                <Typography textAlign="center">Logout</Typography>
+              </MenuItem>
             </Menu>
           </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-end' }}>
+            <Typography variant="body1" sx={{ my: 2, color: 'white', display: 'block', marginRight: '50px', marginTop: '20px'}}>
+              {
+                user.tipo === 1 ?
+                  "Administrador"
+                : user.tipo === 2 ?
+                  "Gestor"
+                :
+                  "Usuário"
+              }: {user.nome}
+            </Typography>
+            <Button onClick={handleLogout} sx={{ my: 2, color: 'white', display: 'block' }}>
+              Sair
+            </Button>
           </Box>
         </Toolbar>
       </Container>

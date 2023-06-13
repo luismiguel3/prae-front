@@ -1,10 +1,11 @@
-import { useState, useContext, useNavigate } from 'react';
+import { useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import './styles-cadastro.css';
 import { Container, Form, Button, Row, Col, FormGroup, NavLink } from 'react-bootstrap';
 import { z } from 'zod';
 import {zodResolver} from '@hookform/resolvers/zod';
 import api from "../../services/api";
+import { toast } from "react-toastify";
 
 const schema = z.object({
     email: z.string()
@@ -31,8 +32,10 @@ function Cadastro() {
                 senha: event.senha,
                 tipo: 3,
             });
+            toast.success("Cadastro realizado com sucesso");
         } catch (error) {
             console.log(error);
+            toast.error("Erro ao realizar cadastro");
         }
     }
 
@@ -102,7 +105,7 @@ function Cadastro() {
                                 </FormGroup>
                                 <FormGroup className='text-buttons' style={{marginTop:"20px", flexWrap: "nowrap"}}>
                                     <div className="button-wrapper">
-                                        <NavLink href='/recuperar-senha' style={{color: "#1177BB", fontSize: "17px" }}>Esqueceu a senha?</NavLink>
+                                        <NavLink href='/' style={{color: "#1177BB", fontSize: "17px" }}>Voltar a pagina inicial</NavLink>
                                     </div>
                                 </FormGroup>
                             </Col>

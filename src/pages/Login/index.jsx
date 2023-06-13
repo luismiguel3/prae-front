@@ -110,11 +110,6 @@ function Login() {
                         }}>
                         Cadastre-se
                       </NavLink>
-                      <NavLink
-                        href="/recuperar-senha"
-                        style={{ color: "#1177BB", fontSize: "1REM" }}>
-                        Esqueceu a senha?
-                      </NavLink>
                     </div>
                   </FormGroup>
                 </Col>

@@ -4,7 +4,8 @@ import React from "react";
 import "./styles-dashboard.css";
 
 // component
-import MenuLeft from "./MenuLeft";
+import MenuLeft from "../../components/Dashboard/MenuLeft";
+import Nav from "../../components/Dashboard/Nav";
 
 import {
   Button,
@@ -81,6 +82,8 @@ function Dashboard() {
       
   ];
     return (
+      <>
+        <Nav /> 
         <div style={{ display: "flex"}}>
             <MenuLeft />
             <div style={{ marginLeft: "10%", marginTop: "10%", marginRight:"5%" }}>
@@ -108,7 +111,7 @@ function Dashboard() {
                 </Row>
             </div>
         </div>
-    
+      </>
   );
 }
 

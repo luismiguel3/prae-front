@@ -1,11 +1,17 @@
 import React from "react";
-import "./styles-dashboard.css";
+import "./styles-menuleft.css";
 import {
   NavLink,
 } from "react-bootstrap";
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+
+// icons
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import InfoIcon from '@mui/icons-material/Info';
+
 
 export default function MenuLeft() {
     return (
@@ -24,6 +30,7 @@ export default function MenuLeft() {
                   }}
               >
               <ListItem button>
+                  <MenuBookIcon className="menu-icons"/>
                   <ListItemText primary="Acervo" className="menu-text" />
               </ListItem>
               </NavLink>
@@ -35,6 +42,7 @@ export default function MenuLeft() {
               }}
               >
               <ListItem button>
+                  <LibraryBooksIcon className="menu-icons"/>
                   <ListItemText primary="Solicitações" className="menu-text"  />
               </ListItem>
               </NavLink>
@@ -46,6 +54,7 @@ export default function MenuLeft() {
               }}
               >
               <ListItem button>
+                  <InfoIcon className="menu-icons"/>  
                   <ListItemText primary="Contato" className="menu-text"  />
               </ListItem>
               </NavLink>

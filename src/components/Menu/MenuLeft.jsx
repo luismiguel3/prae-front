@@ -26,7 +26,7 @@ export default function MenuLeft() {
                   className="menu-left-items"
                   style={{ marginTop: "30%" }}
                   onClick={() => {
-                      window.location.href = "/acervo";
+                      window.location.href = "/dashboard";
                   }}
               >
               <ListItem button>

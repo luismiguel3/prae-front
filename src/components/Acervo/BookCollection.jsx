@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import api from "../../services/api";
 
-// style
-import "./styles-dashboard.css";
+// icons
+import NoPhotographyIcon from '@mui/icons-material/NoPhotography';
 
-// component
-import MenuLeft from "../../components/Menu/MenuLeft";
-import Nav from "../../components/Menu/Nav";
-import BookCollection from "../../components/Acervo/BookCollection";
+import {
+  Button,
+  Row,
+  Col,
+  Card,
+} from "react-bootstrap";
 
-function Dashboard() {
+export default function BookCollection() {
   const [books, setBooks] = useState([]);
   
   useEffect(() => {
@@ -87,15 +89,45 @@ function Dashboard() {
       
   ];
     return (
-      <>
-        <Nav /> 
-        <div style={{ display: "flex"}}>
-            <MenuLeft />
-            <BookCollection />
-            
-        </div>
-      </>
+      <div style={{ marginLeft: "10%", marginTop: "10%", marginRight:"5%" }}>
+          <Row
+              md={6}
+              className="g-3">
+              {books.map((livro) => (
+              <Col >
+                  <Card>
+                  {livro.capa !== null ? (
+                      <Card.Img
+                      variant="top"
+                      src={process.env.PUBLIC_URL + "/uploads/" + livro.capa}
+                      style={{ width: "100%", height: "100%" }}
+                    />
+                  ) : ( 
+                      <NoPhotographyIcon style={{width: "100%", height: "100%"}}/>
+                  )}
+                  <Card.Body>
+                      <Card.Text style={{ fontSize: "0.8rem" }}>
+                      ID: {livro.id}
+                      </Card.Text>
+                      <Card.Text style={{ fontSize: "0.8rem" }}>
+                      Título: {livro.titulo}
+                      </Card.Text>
+                      <Card.Text style={{ fontSize: "0.8rem" }}>
+                      Autor: {livro.autor}
+                      </Card.Text>
+                      <Card.Text style={{ fontSize: "0.8rem" }}>
+                      Categoria: {livro.categoria}
+                      </Card.Text>
+                      <Card.Text style={{ fontSize: "0.8rem" }}>
+                      Quantidade: {livro.quantidade}
+                      </Card.Text>
+                      {<Button variant="primary" style={{TextSize:"10px"}}>Solicitar</Button> 
+                      }
+                  </Card.Body>
+                  </Card>
+              </Col>
+              ))}
+          </Row>
+      </div>
   );
 }
-
-export default Dashboard;

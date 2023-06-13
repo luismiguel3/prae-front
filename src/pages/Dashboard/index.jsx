@@ -1,20 +1,17 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+
+// style
 import "./styles-dashboard.css";
+
+// component
+import MenuLeft from "./MenuLeft";
+
 import {
-  Container,
-  Form,
   Button,
   Row,
   Col,
-  FormGroup,
-  NavLink,
   Card,
-  CardGroup,
 } from "react-bootstrap";
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 
 function Dashboard() {
   const livros = [
@@ -85,48 +82,7 @@ function Dashboard() {
   ];
     return (
         <div style={{ display: "flex"}}>
-            <aside className="menu-left">
-                <div className="menu-logo">
-                    <a href="https://www.ufsm.br/pro-reitorias/prae/">
-                        <img src="/prae-logo.png" alt="PRAE" className="prae-logo"/>
-                    </a>
-                </div>
-                <List>
-                    <NavLink
-                        className="menu-left-items"
-                        style={{ marginTop: "30%" }}
-                        onClick={() => {
-                            window.location.href = "/acervo";
-                        }}
-                    >
-                    <ListItem button>
-                        <ListItemText primary="Acervo" className="menu-text" />
-                    </ListItem>
-                    </NavLink>
-
-                    <NavLink
-                    className="menu-left-items"
-                    onClick={() => {
-                        window.location.href = "/solicitacoes";
-                    }}
-                    >
-                    <ListItem button>
-                        <ListItemText primary="Solicitações" className="menu-text"  />
-                    </ListItem>
-                    </NavLink>
-
-                    <NavLink
-                    className="menu-left-items"
-                    onClick={() => {
-                        window.location.href = "/contato";
-                    }}
-                    >
-                    <ListItem button>
-                        <ListItemText primary="Contato" className="menu-text"  />
-                    </ListItem>
-                    </NavLink>
-                </List>
-            </aside>
+            <MenuLeft />
             <div style={{ marginLeft: "10%", marginTop: "10%", marginRight:"5%" }}>
                 <Row
                     md={6}

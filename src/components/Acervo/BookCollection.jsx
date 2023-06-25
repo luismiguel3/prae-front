@@ -3,6 +3,10 @@ import api from "../../services/api";
 
 // icons
 import NoPhotographyIcon from '@mui/icons-material/NoPhotography';
+import SearchIcon from '@mui/icons-material/Search';
+
+//styles
+import "./styles-bookColletion.css";
 
 import {
   Button,
@@ -10,9 +14,13 @@ import {
   Col,
   Card,
 } from "react-bootstrap";
+import { Input } from "@mui/material";
 
 export default function BookCollection() {
   const [books, setBooks] = useState([]);
+  const [searchText, setSearchText] = useState('');
+  const [rows, setRows] = useState([]);
+
   
   useEffect(() => {
     async function getBooks() {
@@ -22,78 +30,40 @@ export default function BookCollection() {
     getBooks();
   }, []);
 
-  const livros = [
-    {
-      id: 1,
-      titulo: "Harry Potter e a Pedra Filosofal",
-      autor: "J. K. Rowling",
-      editora: "Rocco",
-      ano: 2000,
-      genero: "Fantasia",
-      capa: "https://m.media-amazon.com/images/I/51lRMYwP-4L.jpg",
-    },
-    {
-      id: 1,
-      titulo: "Harry Potter e a Pedra Filosofal",
-      autor: "J. K. Rowling",
-      editora: "Rocco",
-      ano: 2000,
-      genero: "Fantasia",
-      capa: "https://m.media-amazon.com/images/I/51lRMYwP-4L.jpg",
-    },
-    {
-      id: 1,
-      titulo: "Harry Potter e a Pedra Filosofal",
-      autor: "J. K. Rowling",
-      editora: "Rocco",
-      ano: 2000,
-      genero: "Fantasia",
-      capa: "https://m.media-amazon.com/images/I/51lRMYwP-4L.jpg",
-    },
-    {
-      id: 1,
-      titulo: "Harry Potter e a Pedra Filosofal",
-      autor: "J. K. Rowling",
-      editora: "Rocco",
-      ano: 2000,
-      genero: "Fantasia",
-      capa: "https://m.media-amazon.com/images/I/51lRMYwP-4L.jpg",
-    },
-    {
-      id: 1,
-      titulo: "Harry Potter e a Pedra Filosofal",
-      autor: "J. K. Rowling",
-      editora: "Rocco",
-      ano: 2000,
-      genero: "Fantasia",
-      capa: "https://m.media-amazon.com/images/I/51lRMYwP-4L.jpg",
-    },
-    {
-      id: 1,
-      titulo: "Harry Potter e a Pedra Filosofal",
-      autor: "J. K. Rowling",
-      editora: "Rocco",
-      ano: 2000,
-      genero: "Fantasia",
-      capa: "https://m.media-amazon.com/images/I/51lRMYwP-4L.jpg",
-    },
-    {
-        id: 1,
-        titulo: "Harry Potter e a Pedra Filosofal",
-        autor: "J. K. Rowling",
-        editora: "Rocco",
-        ano: 2000,
-        genero: "Fantasia",
-        capa: "https://m.media-amazon.com/images/I/51lRMYwP-4L.jpg",
-      },
-      
-  ];
+  useEffect(() => {
+    const lowercasedValue = searchText.toLowerCase().trim();
+    if (lowercasedValue === '') setRows(books);
+    else {
+        const filteredData = books.filter((item) => {
+            return Object.keys(item).some((key) =>
+                item[key]?.toString().toLowerCase().includes(lowercasedValue)
+            );
+        });
+        setRows(filteredData);
+    }
+}, [books, searchText])
+  
+  const handleChange = (value) => {
+    setSearchText(value);
+  };
+
     return (
+      <>
       <div style={{ marginLeft: "10%", marginTop: "10%", marginRight:"5%" }}>
+      <div>
+        <Input
+            className="search-input"
+            type="text"
+            placeholder="Digite para pesquisar..."
+            value={searchText}
+            onChange={(e) => handleChange(e.target.value)}
+        />
+        <SearchIcon/>
+      </div>
           <Row
               md={6}
               className="g-3">
-              {books.map((livro) => (
+              {rows.map((livro) => (
               <Col >
                   <Card>
                   {livro.capa !== null ? (
@@ -129,5 +99,6 @@ export default function BookCollection() {
               ))}
           </Row>
       </div>
+      </>
   );
 }

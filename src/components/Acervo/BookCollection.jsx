@@ -4,6 +4,8 @@ import api from "../../services/api";
 // icons
 import NoPhotographyIcon from '@mui/icons-material/NoPhotography';
 import SearchIcon from '@mui/icons-material/Search';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 
 //styles
 import "./styles-bookColletion.css";
@@ -20,6 +22,9 @@ export default function BookCollection() {
   const [books, setBooks] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [rows, setRows] = useState([]);
+  const itemsPerPage = 6; // Quantidade de itens por página
+  const totalPages = Math.ceil(rows.length / itemsPerPage);
+  const [currentPage, setCurrentPage] = useState(1);
 
   
   useEffect(() => {
@@ -45,60 +50,106 @@ export default function BookCollection() {
   
   const handleChange = (value) => {
     setSearchText(value);
+    setCurrentPage(1);
   };
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage((prevPage) => prevPage - 1);
+  };
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentRows = rows.slice(startIndex, endIndex);
 
     return (
       <>
-      <div style={{ marginLeft: "10%", marginTop: "10%", marginRight:"5%" }}>
-      <div>
-        <Input
-            className="search-input"
-            type="text"
-            placeholder="Digite para pesquisar..."
-            value={searchText}
-            onChange={(e) => handleChange(e.target.value)}
-        />
-        <SearchIcon/>
-      </div>
-          <Row
-              md={6}
-              className="g-3">
-              {rows.map((livro) => (
-              <Col >
+        <div style={{ marginLeft: "5%", marginTop: "2%", marginRight:"5%" }}>
+          <div>
+            <Input
+                className="search-input"
+                type="text"
+                placeholder="Digite para pesquisar..."
+                value={searchText}
+                onChange={(e) => handleChange(e.target.value)}
+            />
+            <SearchIcon/>
+          </div>
+          <Row md={6} className="g-3">
+            {currentRows.map((livro) => (
+              <Col key={livro.id}>
+                {
                   <Card>
-                  {livro.capa !== null ? (
-                      <Card.Img
-                      variant="top"
-                      src={process.env.PUBLIC_URL + "/uploads/" + livro.capa}
-                      style={{ width: "100%", height: "100%" }}
-                    />
-                  ) : ( 
-                      <NoPhotographyIcon style={{width: "100%", height: "100%"}}/>
-                  )}
-                  <Card.Body>
-                      <Card.Text style={{ fontSize: "0.8rem" }}>
-                      ID: {livro.id}
-                      </Card.Text>
-                      <Card.Text style={{ fontSize: "0.8rem" }}>
-                      Título: {livro.titulo}
-                      </Card.Text>
-                      <Card.Text style={{ fontSize: "0.8rem" }}>
-                      Autor: {livro.autor}
-                      </Card.Text>
-                      <Card.Text style={{ fontSize: "0.8rem" }}>
-                      Categoria: {livro.categoria}
-                      </Card.Text>
-                      <Card.Text style={{ fontSize: "0.8rem" }}>
-                      Quantidade: {livro.quantidade}
-                      </Card.Text>
-                      {<Button variant="primary" style={{TextSize:"10px"}}>Solicitar</Button> 
-                      }
-                  </Card.Body>
+                    {livro.capa !== null ? (
+                        <Card.Img
+                        variant="top"
+                        src={process.env.PUBLIC_URL + "/uploads/" + livro.capa}
+                        style={{ width: "100%", height: "100%" }}
+                      />
+                    ) : ( 
+                        <NoPhotographyIcon style={{width: "100%", height: "100%"}}/>
+                    )}
+                    <Card.Body>
+                        <Card.Text style={{ fontSize: "0.8rem" }}>
+                        ID: {livro.id}
+                        </Card.Text>
+                        <Card.Text style={{ fontSize: "0.8rem" }}>
+                        Título: {livro.titulo}
+                        </Card.Text>
+                        <Card.Text style={{ fontSize: "0.8rem" }}>
+                        Autor: {livro.autor}
+                        </Card.Text>
+                        <Card.Text style={{ fontSize: "0.8rem" }}>
+                        Categoria: {livro.categoria}
+                        </Card.Text>
+                        <Card.Text style={{ fontSize: "0.8rem" }}>
+                        Quantidade: {livro.quantidade}
+                        </Card.Text>
+                        {<Button variant="primary" style={{TextSize:"10px"}}>Solicitar</Button> 
+                        }
+                    </Card.Body>
                   </Card>
+                }
               </Col>
-              ))}
+            ))}
           </Row>
-      </div>
+
+          {
+            currentPage !== 1 ? (
+              <>
+                <NavigateBeforeIcon
+                  style={{marginTop: "20px"}}
+                />
+                <Button
+                  variant="primary" 
+                  onClick={handlePrevPage}
+                  disabled={currentPage === 1}
+                  style={{ marginRight: "10px", marginTop: "20px" }}
+                >
+                  Voltar para a página {currentPage-1}
+                </Button>
+              </>
+            ) : null
+          }
+          
+          <Button
+            variant="primary"
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+            style={{ marginLeft: "10px", marginTop: "20px" }}
+          >
+            Ir para a página {currentPage+1} de {totalPages}
+          </Button>
+          <NavigateNextIcon
+            variant="primary"
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+            style={{marginTop: "20px"}}
+          />
+        </div>
       </>
-  );
-}
+    );
+  };

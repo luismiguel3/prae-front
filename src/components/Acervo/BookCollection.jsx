@@ -78,38 +78,41 @@ export default function BookCollection() {
             />
             <SearchIcon/>
           </div>
-          <Row md={6} className="g-3">
+          <Row className="seven-cols">
             {currentRows.map((livro) => (
-              <Col key={livro.id}>
+              <Col key={livro.id} lg={2} >
                 {
-                  <Card>
+                  <Card style={{minHeight: "15rem"}}>
                     {livro.capa !== null ? (
                         <Card.Img
                         variant="top"
                         src={process.env.PUBLIC_URL + "/uploads/" + livro.capa}
-                        style={{ width: "100%", height: "100%" }}
+                        style={{ width: "100%", minHeight: "14rem",maxHeight: "14rem" }}
                       />
                     ) : ( 
-                        <NoPhotographyIcon style={{width: "100%", height: "100%"}}/>
+                        <Card.Img
+                        variant="top"
+                        src={"https://www.actbus.net/fleetwiki/images/8/84/Noimage.jpg"}
+                        style={{ width: "100%", minHeight: "14rem", maxHeight: "14rem"}}
+                      />
                     )}
                     <Card.Body>
                         <Card.Text style={{ fontSize: "0.8rem" }}>
                         ID: {livro.id}
                         </Card.Text>
-                        <Card.Text style={{ fontSize: "0.8rem" }}>
+                        <Card.Text className="texto-livro"  style={{ fontSize: "0.8rem" }}>
                         Título: {livro.titulo}
                         </Card.Text>
-                        <Card.Text style={{ fontSize: "0.8rem" }}>
+                        <Card.Text className="texto-livro"  style={{ fontSize: "0.8rem" }}>
                         Autor: {livro.autor}
                         </Card.Text>
-                        <Card.Text style={{ fontSize: "0.8rem" }}>
+                        <Card.Text className="texto-livro" style={{ fontSize: "0.8rem" }}>
                         Categoria: {livro.categoria}
                         </Card.Text>
                         <Card.Text style={{ fontSize: "0.8rem" }}>
                         Quantidade: {livro.quantidade}
                         </Card.Text>
-                        {<Button variant="primary" style={{TextSize:"10px"}}>Solicitar</Button> 
-                        }
+                        <Button variant="primary" style={{TextSize:"10px"}}>Solicitar</Button> 
                     </Card.Body>
                   </Card>
                 }

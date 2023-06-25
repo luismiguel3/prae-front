@@ -135,20 +135,26 @@ export default function BookCollection() {
             ) : null
           }
           
-          <Button
-            variant="primary"
-            onClick={handleNextPage}
-            disabled={currentPage === totalPages}
-            style={{ marginLeft: "10px", marginTop: "20px" }}
-          >
-            Ir para a página {currentPage+1} de {totalPages}
-          </Button>
-          <NavigateNextIcon
-            variant="primary"
-            onClick={handleNextPage}
-            disabled={currentPage === totalPages}
-            style={{marginTop: "20px"}}
-          />
+          {
+            currentPage === totalPages ? null : (
+              <>
+                <Button
+                  variant="primary"
+                  onClick={handleNextPage}
+                  disabled={currentPage === totalPages}
+                  style={{ marginLeft: "10px", marginTop: "20px" }}
+                >
+                  Ir para a página {currentPage+1} de {totalPages}
+                </Button>
+                <NavigateNextIcon
+                  variant="primary"
+                  onClick={handleNextPage}
+                  disabled={currentPage === totalPages}
+                  style={{marginTop: "20px"}}
+                />
+              </>
+            )
+          }
         </div>
       </>
     );

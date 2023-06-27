@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiUrl = "http://127.0.0.1:3333";
+const apiUrl = "https://prae-backend.onrender.com/";
 
 const api = axios.create({
   baseURL: apiUrl,

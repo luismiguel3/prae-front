@@ -12,6 +12,7 @@
 }
 
 .menu-left-items {
+  margin-top: 70px;
   display: grid;
   justify-content: center;
   font-size: 12px;

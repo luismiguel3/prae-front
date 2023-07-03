@@ -14,6 +14,7 @@ import ContactModal from "../Contato/Contact";
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import InfoIcon from '@mui/icons-material/Info';
+import AboutUs from '@mui/icons-material/Diversity1';
 
 
 export default function MenuLeft() {
@@ -50,9 +51,19 @@ export default function MenuLeft() {
                     </ListItem>
                 </NavLink>
                 <ListItem>
-                <ContactModal />
+                    <ContactModal />
+                </ListItem>
+                <NavLink
+                className="menu-left-items"
+                onClick={() => {
+                    window.location.href = "/sobre";
+                }}
+                >
+                    <ListItem button>
+                        <AboutUs className="menu-icons"/>
+                        <ListItemText primary="Sobre nós" className="menu-text"  />
                     </ListItem>
-            
+                </NavLink>
             </List>
         </div>
   );

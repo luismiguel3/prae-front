@@ -1,23 +1,4 @@
-.search-input {
-  margin-left: 50px;
-  margin-bottom: 30px;
-  margin-right: 20%;
-  transform: translateX(70%);
-  display: grid;
-  grid-area: search;
-  border: none;
-  font-size: 16px;
-  height: 30px;
-  width: 30%;
-  text-align: center;
-  color: #757575;
-  border-radius: 10px;
-  font-family: "Arial", sans-serif;
-  &:focus {
-    border: 2px solid #5c9089;
-    outline: none;
-  }
-}
+
 .texto-livro {
   max-width: 10rem;
   overflow: hidden;
@@ -25,4 +6,84 @@
   display: -webkit-box;
   -webkit-line-clamp: 1; /* number of lines to show */
   -webkit-box-orient: vertical;
+}
+
+.container{
+  display: grid;
+  grid-template-rows: 10% 90%;
+  align-content: center;
+  justify-content: center;
+}
+
+.sonContainer{
+  display: grid;
+   align-items: center;
+   margin: auto;
+}
+
+.card{
+  width: 200px;
+  margin: 12px auto;
+  max-height: 650px;
+}
+
+.col{
+  margin: 40px;
+}
+
+.pagination{
+  display: grid;
+  align-self: start;
+  justify-content: end;
+}
+
+.paginationButton{
+  height: 50px;
+  margin-right: 12px;
+}
+
+.paginationIconButton{
+  align-self: center;
+}
+
+.search{
+  display: grid;
+  grid-template-columns: 1fr 0.1fr 3fr;
+  align-self: center;
+  width: 100%;
+  &:focus {
+    border: 2px solid #5c9089;
+  }
+}
+
+.iconSearch{
+  display: flex;
+  align-self: center;
+  margin: auto;
+  position: relative;
+}
+
+@media screen and (max-width: 899px){
+  .search{
+    display: grid;
+    width: 80%;
+    grid-template-columns: 1fr;
+grid-template-rows: 1fr 1fr;
+margin: auto;
+  }
+
+  .pagination{
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .paginationButton{
+    height: 20%;
+    margin-right: 12px;
+  }
+  
+  .paginationIconButton{
+    align-self: center;
+  }
+
 }

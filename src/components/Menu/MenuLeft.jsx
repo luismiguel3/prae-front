@@ -18,7 +18,7 @@ import InfoIcon from '@mui/icons-material/Info';
 
 export default function MenuLeft() {
     return (
-        <aside className="menu-left">
+        <div className="menu-left">
             <div className="menu-logo">
                 <a target="_blank" rel="noopener noreferrer" href="https://www.ufsm.br/pro-reitorias/prae/">
                     <img src="/prae-logo.png" alt="PRAE" className="prae-logo"/>
@@ -49,9 +49,8 @@ export default function MenuLeft() {
                         <ListItemText primary="Solicitações" className="menu-text"  />
                     </ListItem>
                 </NavLink>
-
                 <ContactModal />
             </List>
-        </aside>
+        </div>
   );
 }

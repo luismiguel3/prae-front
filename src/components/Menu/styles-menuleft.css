@@ -1,8 +1,14 @@
 .menu-left {
   text-align: center;
   height: 100vh;
-  width: 18vw;
+  max-width: 250px;
   background-color: #004E80;
+}
+
+@media screen and (max-width: 899px){
+  .menu-left {
+    display: none;
+  }
 }
 
 .menu-left-items {
@@ -10,6 +16,7 @@
   font-size: 12px;
   padding: 30px;
   font-weight: bold;
+  margin: auto;
 }
 
 .menu-logo {

@@ -67,70 +67,28 @@ export default function BookCollection() {
 
     return (
       <>
-        <div style={{ marginLeft: "5%", marginTop: "2%", marginRight:"5%" }}>
-          <div>
-            <Input
-                className="search-input"
+      
+        <div className="container">
+          <div className="search">
+            <Input  
                 type="text"
                 placeholder="Digite para pesquisar..."
                 value={searchText}
                 onChange={(e) => handleChange(e.target.value)}
             />
-            <SearchIcon/>
-          </div>
-          <Row className="seven-cols">
-            {currentRows.map((livro) => (
-              <Col key={livro.id} lg={2} >
-                {
-                  <Card style={{minHeight: "15rem"}}>
-                    {livro.capa !== null ? (
-                        <Card.Img
-                        variant="top"
-                        src={process.env.PUBLIC_URL + "/uploads/" + livro.capa}
-                        style={{ width: "100%", minHeight: "14rem",maxHeight: "14rem" }}
-                      />
-                    ) : ( 
-                        <Card.Img
-                        variant="top"
-                        src={"https://www.actbus.net/fleetwiki/images/8/84/Noimage.jpg"}
-                        style={{ width: "100%", minHeight: "14rem", maxHeight: "14rem"}}
-                      />
-                    )}
-                    <Card.Body>
-                        <Card.Text style={{ fontSize: "0.8rem" }}>
-                        ID: {livro.id}
-                        </Card.Text>
-                        <Card.Text className="texto-livro"  style={{ fontSize: "0.8rem" }}>
-                        Título: {livro.titulo}
-                        </Card.Text>
-                        <Card.Text className="texto-livro"  style={{ fontSize: "0.8rem" }}>
-                        Autor: {livro.autor}
-                        </Card.Text>
-                        <Card.Text className="texto-livro" style={{ fontSize: "0.8rem" }}>
-                        Categoria: {livro.categoria}
-                        </Card.Text>
-                        <Card.Text style={{ fontSize: "0.8rem" }}>
-                        Quantidade: {livro.quantidade}
-                        </Card.Text>
-                        <Button variant="primary" style={{TextSize:"10px"}}>Solicitar</Button> 
-                    </Card.Body>
-                  </Card>
-                }
-              </Col>
-            ))}
-          </Row>
-
+            <SearchIcon className="iconSearch"/>
+            <div className="pagination">
           {
             currentPage !== 1 ? (
               <>
                 <NavigateBeforeIcon
-                  style={{marginTop: "20px"}}
+                className="paginationIconButton"
                 />
                 <Button
                   variant="primary" 
                   onClick={handlePrevPage}
                   disabled={currentPage === 1}
-                  style={{ marginRight: "10px", marginTop: "20px" }}
+                  className="paginationButton"
                 >
                   Voltar para a página {currentPage-1}
                 </Button>
@@ -145,7 +103,7 @@ export default function BookCollection() {
                   variant="primary"
                   onClick={handleNextPage}
                   disabled={currentPage === totalPages}
-                  style={{ marginLeft: "10px", marginTop: "20px" }}
+                  className="paginationButton"
                 >
                   Ir para a página {currentPage+1} de {totalPages}
                 </Button>
@@ -153,11 +111,55 @@ export default function BookCollection() {
                   variant="primary"
                   onClick={handleNextPage}
                   disabled={currentPage === totalPages}
-                  style={{marginTop: "20px"}}
+                  className="paginationIconButton"
                 />
               </>
             )
           }
+          </div>
+          </div>
+          <Row className="sonContainer">
+            {currentRows.map((livro) => (
+              <Col className="col" lg={2}  key={livro.id}>
+                {
+                  <Card className="card">
+                    {livro.capa !== null ? (
+                        <Card.Img
+                        variant="top"
+                        src={process.env.PUBLIC_URL + "/uploads/" + livro.capa}
+                        style={{ width: "150px", height:'150px', margin:'auto'}}
+                      />
+                    ) : ( 
+                        <Card.Img
+                        variant="top"
+                        src={"https://www.actbus.net/fleetwiki/images/8/84/Noimage.jpg"}
+                        style={{ width: "150px", height:'150px', margin:'auto' }}
+                      />
+                    )}
+                    <Card.Body>
+                        <Card.Text>
+                        ID: {livro.id}
+                        </Card.Text>
+                        <Card.Text className="texto-livro">
+                        Título: {livro.titulo}
+                        </Card.Text>
+                        <Card.Text className="texto-livro">
+                        Autor: {livro.autor}
+                        </Card.Text>
+                        <Card.Text className="texto-livro">
+                        Categoria: {livro.categoria}
+                        </Card.Text>
+                        <Card.Text>
+                        Quantidade: {livro.quantidade}
+                        </Card.Text>
+                        <Button variant="primary">Solicitar</Button> 
+                    </Card.Body>
+                  </Card>
+                }
+              </Col>
+            ))}
+          </Row>
+
         </div>
       </>
     );

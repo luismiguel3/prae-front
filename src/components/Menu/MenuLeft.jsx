@@ -27,7 +27,7 @@ export default function MenuLeft() {
             <List>
                 <NavLink
                     className="menu-left-items"
-                    style={{ marginTop: "30%" }}
+
                     onClick={() => {
                         window.location.href = "/dashboard";
                     }}
@@ -49,7 +49,10 @@ export default function MenuLeft() {
                         <ListItemText primary="Solicitações" className="menu-text"  />
                     </ListItem>
                 </NavLink>
+                <ListItem>
                 <ContactModal />
+                    </ListItem>
+            
             </List>
         </div>
   );

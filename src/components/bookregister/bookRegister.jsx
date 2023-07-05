@@ -7,6 +7,8 @@ import { NavLink, Modal, Form, Button } from "react-bootstrap";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import api from "../../services/api";
+import { toast } from "react-toastify";
 
 const MAX_FILE_SIZE = 500000;
 const ACCEPTED_IMAGE_TYPES = [
@@ -41,9 +43,24 @@ export default function BookRegister(props) {
     resolver: zodResolver(schema),
   });
 
-  function Cadastra(data) {
-    console.log("UEEEE")
+  async function Cadastra(data) {
     console.log(data);
+    try {
+      toast.loading("Cadastrando livro...")
+      await api.post("/books", {
+        titulo: data.titulo,
+        autor: data.autor,
+        categoria: data.categoria,
+        capa: data.image[0]
+      })
+      toast.dismiss()
+      toast.success("Livro cadastrado com sucesso!")
+      
+    } catch(error) {
+      console.log(error)
+      toast.error("Erro ao cadastrar livro!")
+    }
+
   }
 
   function erroCadastro(data){

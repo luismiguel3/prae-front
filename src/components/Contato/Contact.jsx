@@ -19,10 +19,10 @@ export default function ContactModal(props) {
 
   return (
     <>
-      <div className="menu-left-items">
-        <ListItem button onClick={handleShow}>
-          <InfoIcon className="menu-icons"/>  
-          <ListItemText primary="Contato" className="menu-text"  />
+      <div >
+        <ListItem style={{marginTop:"5vh", marginLeft:"10px",justifyContent:"center",color:"white",fontWeight:"bold"}} button onClick={handleShow}>
+          <InfoIcon />  
+          <ListItemText primary="Contato" style={{marginLeft:"5vh",color:"white",fontWeight:"bold"}}  />
         </ListItem>
       </div>
 

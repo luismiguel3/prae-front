@@ -6,9 +6,7 @@
 }
 
 .menu-left-items {
-  margin-top: 70px;
   font-size: 12px;
-  padding: 30px;
   font-weight: bold;
 }
 
@@ -22,7 +20,6 @@
   height: 100%;
   width: 100%;
 }
-
 .menu-text {
   font-size: 25px;
   color: white;
@@ -31,7 +28,6 @@
 
 .menu-icons {
   font-size: 25px;
-  margin-left: 20px;
   color: white;
   font-weight: bold;
 }

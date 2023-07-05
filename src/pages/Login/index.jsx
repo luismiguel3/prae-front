@@ -36,9 +36,11 @@ function Login() {
   });
 
   async function onSubmit(data) {
-    try {
+    try { 
+      toast.loading("Carregando...");
       await login(data.email, data.senha);
       console.log("Logado com sucesso");
+      toast.dismiss();
     } catch {
       toast.error("Credenciais inválidas");
       console.log("Erro ao logar");

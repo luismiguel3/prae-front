@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import "./styles-menuleft.css";
 import { NavLink } from "react-bootstrap";
 import List from "@material-ui/core/List";
@@ -16,7 +16,13 @@ import InfoIcon from "@mui/icons-material/Info";
 import AboutUs from "@mui/icons-material/Diversity1";
 import { Book } from "@mui/icons-material";
 
+//context
+import { AuthContext } from "../../context/auth";
+
 export default function MenuLeft() {
+  const { user } = useContext(AuthContext);
+
+
   return (
     <div className="menu-left">
       <div className="menu-logo">
@@ -39,10 +45,12 @@ export default function MenuLeft() {
           </ListItem>
         </NavLink>
 
-        <BookRegister />
-
-
-
+        {
+          user.tipo === 1 ?
+            <BookRegister />
+          : null
+        }
+        
         <NavLink
           className="menu-left-items"
           onClick={() => {

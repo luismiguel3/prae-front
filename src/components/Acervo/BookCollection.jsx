@@ -27,12 +27,23 @@ export default function BookCollection() {
 
   useEffect(() => {
     async function getBooks() {
+      toast.loading("Carregando Livros...");
+
       const response = await api.get("/books");
-      const arrBooks = response.data.books.map((book) => {
-        book["solicitado"] = false;
+      setBooks(response.data.books);
+
+      const requestByUser = await api.get(`/requests/user/${user.id}`);
+      const finalBooks = response.data.books.map((book) => {
+        const request = requestByUser.data.requests.find(
+          (request) => request.id_livro === book.id
+        );
+
+        request ? book.solicitado = true : book.solicitado = false;
+
         return book;
       });
-      setBooks(arrBooks);
+      setBooks(finalBooks);
+      toast.dismiss();
     }
     getBooks();
   }, []);
@@ -69,7 +80,6 @@ export default function BookCollection() {
         });
         return newBooks;
       });
-          
     } catch {
       toast.error("Livro já solicitado");
     }
@@ -178,26 +188,15 @@ export default function BookCollection() {
                     <Card.Text>Quantidade: {livro.quantidade}</Card.Text>
 
                     {livro.solicitado ? (
-                      <Button
-                        variant="secondary"
-                        color="muted"
-                        disabled={true}
-                        >
+                      <Button variant="secondary" color="muted" disabled={true}>
                         Livro solicitado
                       </Button>
                     ) : (
-                      <Button
-                        variant="primary"
-                        onClick={() => Solicita(livro)}>
+                      <Button variant="primary" onClick={() => Solicita(livro)}>
                         Solicitar
                       </Button>
                     )}
 
-                    {/* <Button
-                      variant="primary"
-                      onClick={() => Solicita(livro.id)}>
-                      Solicitar
-                    </Button> */}
                   </Card.Body>
                 </Card>
               }

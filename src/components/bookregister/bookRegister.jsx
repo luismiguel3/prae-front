@@ -62,11 +62,11 @@ export default function BookRegister(props) {
     }
 
   }
-
   function erroCadastro(data){
     console.log("ERO")
     console.log(data);
   }
+
 
 
   const categoria = [

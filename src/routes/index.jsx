@@ -6,6 +6,7 @@ import  Login  from "../pages/Login";
 import Cadastro from "../pages/Cadastro";
 import Dashboard from "../pages/Dashboard";
 import Solicitacoes from "../pages/Solicitacoes";
+import Sobre from "../pages/Sobre";
 
 const RoutesFunction = () => {
     const Private = ({ children, permission }) => {
@@ -38,7 +39,8 @@ const RoutesFunction = () => {
                     }
                 />
                 <Route path="/solicitacoes" element={<Solicitacoes/>} />
-                <Route path="*" element={<h1>Not Found 404</h1>} />
+                <Route path="/sobre" element={<Sobre/>} />
+                <Route path="*" element={<h1>Página não encontrada 404</h1>} />
 
                 
                {/*

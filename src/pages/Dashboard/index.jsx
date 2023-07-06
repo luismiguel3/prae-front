@@ -19,73 +19,7 @@ function Dashboard() {
     }
     getBooks();
   }, []);
-
-  const livros = [
-    {
-      id: 1,
-      titulo: "Harry Potter e a Pedra Filosofal",
-      autor: "J. K. Rowling",
-      editora: "Rocco",
-      ano: 2000,
-      genero: "Fantasia",
-      capa: "https://m.media-amazon.com/images/I/51lRMYwP-4L.jpg",
-    },
-    {
-      id: 1,
-      titulo: "Harry Potter e a Pedra Filosofal",
-      autor: "J. K. Rowling",
-      editora: "Rocco",
-      ano: 2000,
-      genero: "Fantasia",
-      capa: "https://m.media-amazon.com/images/I/51lRMYwP-4L.jpg",
-    },
-    {
-      id: 1,
-      titulo: "Harry Potter e a Pedra Filosofal",
-      autor: "J. K. Rowling",
-      editora: "Rocco",
-      ano: 2000,
-      genero: "Fantasia",
-      capa: "https://m.media-amazon.com/images/I/51lRMYwP-4L.jpg",
-    },
-    {
-      id: 1,
-      titulo: "Harry Potter e a Pedra Filosofal",
-      autor: "J. K. Rowling",
-      editora: "Rocco",
-      ano: 2000,
-      genero: "Fantasia",
-      capa: "https://m.media-amazon.com/images/I/51lRMYwP-4L.jpg",
-    },
-    {
-      id: 1,
-      titulo: "Harry Potter e a Pedra Filosofal",
-      autor: "J. K. Rowling",
-      editora: "Rocco",
-      ano: 2000,
-      genero: "Fantasia",
-      capa: "https://m.media-amazon.com/images/I/51lRMYwP-4L.jpg",
-    },
-    {
-      id: 1,
-      titulo: "Harry Potter e a Pedra Filosofal",
-      autor: "J. K. Rowling",
-      editora: "Rocco",
-      ano: 2000,
-      genero: "Fantasia",
-      capa: "https://m.media-amazon.com/images/I/51lRMYwP-4L.jpg",
-    },
-    {
-        id: 1,
-        titulo: "Harry Potter e a Pedra Filosofal",
-        autor: "J. K. Rowling",
-        editora: "Rocco",
-        ano: 2000,
-        genero: "Fantasia",
-        capa: "https://m.media-amazon.com/images/I/51lRMYwP-4L.jpg",
-      },
-      
-  ];
+  
     return (
       <>
         <Nav /> 

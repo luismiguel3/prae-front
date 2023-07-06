@@ -194,13 +194,18 @@ export default function TabelaAdmin() {
                                 window.confirm(
                                   'Tem certeza de que deseja aceitar esta solicitação?'
                                 )
-                              )
+                              ) {
+                                const requestedBook = books.find(book => book.id === request.id_livro);
+                                api
+                                  .put(`/books/${requestedBook.id}`, {
+                                    quantidade: requestedBook.quantidade -1
+                                  })
                                 api
                                   .put(`/requests/${request.id}`, {
-                                    status: 1,
-                                    quantidade: request.quantidade - 1,
+                                    status: 1
                                   })
                                   .then(() => setReload(!reload));
+                              }
                             }}
                           >
                             <Check />

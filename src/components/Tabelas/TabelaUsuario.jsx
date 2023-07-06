@@ -87,7 +87,7 @@ export default function TabelaUsuario() {
   useEffect(() => {
     const lowercasedValue = searchText.toLowerCase().trim();
     if (lowercasedValue === '') {
-      setRows(requests.filter(request => request.status === 0));
+      setRows(requests);
     } else {
       const filteredBooks = books.filter(item => {
         return Object.keys(item).some(key =>
@@ -99,7 +99,7 @@ export default function TabelaUsuario() {
       const userIds = users.filter(user => user.nome.toLowerCase().includes(lowercasedValue)).map(user => user.id);
 
       const filteredRequests = requests.filter(request =>
-        (bookIds.includes(request.id_livro) && request.status === 0) || userIds.includes(request.id_usuario) && request.status === 0
+        (bookIds.includes(request.id_livro)) || userIds.includes(request.id_usuario)
       );
 
       setRows(filteredRequests);
@@ -177,38 +177,42 @@ export default function TabelaUsuario() {
                     page * itemsPerPage + itemsPerPage
                   )
                   .map((request, index) =>
-                    request.status === 0 ? (
-                      <tr key={index}>
-                        <td>{index + 1}</td>
-                        <td>
-                          {books.find(book => book?.id === request.id_livro)
-                            ?.titulo}
-                        </td>
-                        <td>
-                          {books.find(book => book?.id === request.id_livro)
-                            ?.autor}
-                        </td>
-                        <td>
-                          {users.find(user => user?.id === request.id_usuario)
-                            ?.nome}
-                        </td>
-                        <td>
-                          {request.status === 0 ? (
-                            <>
+                    <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td>
+                        {books.find(book => book?.id === request.id_livro)
+                          ?.titulo}
+                      </td>
+                      <td>
+                        {books.find(book => book?.id === request.id_livro)
+                          ?.autor}
+                      </td>
+                      <td>
+                        {users.find(user => user?.id === request.id_usuario)
+                          ?.nome}
+                      </td>
+                      <td>
+                        {request.status === 0 ? (
+                          <>
+                            <span className="text-warning">
                               Pendente de aprovação
-                            </> 
-                          ) : request.status === 1 ? (
-                            <>
+                            </span>
+                          </> 
+                        ) : request.status === 1 ? (
+                          <>
+                            <span className="text-success">
                               Aprovado
-                            </> 
-                          ) : (
-                            <>
+                            </span>
+                          </> 
+                        ) : (
+                          <>
+                            <span className="text-danger"> 
                               Reprovado
-                            </>
-                          )}
-                        </td>
-                      </tr>
-                    ) : null
+                            </span>
+                          </>
+                        )}
+                      </td>
+                    </tr>
                   )}
               </tbody>
             </Table>

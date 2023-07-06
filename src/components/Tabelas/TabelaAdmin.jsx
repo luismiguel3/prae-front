@@ -192,7 +192,7 @@ export default function TabelaAdmin() {
                             onClick={() => {
                               if (
                                 window.confirm(
-                                  'Tem certeza de que deseja aceitar esta solicitação?'
+                                  'Tem certeza de que deseja ACEITAR esta solicitação?'
                                 )
                               ) {
                                 const requestedBook = books.find(book => book.id === request.id_livro);
@@ -215,7 +215,7 @@ export default function TabelaAdmin() {
                             onClick={() => {
                               if (
                                 window.confirm(
-                                  'Tem certeza de que deseja aceitar esta solicitação?'
+                                  'Tem certeza de que deseja RECUSAR esta solicitação?'
                                 )
                               )
                                 api

@@ -29,6 +29,7 @@ const schema = z.object({
       "Only .jpg, .jpeg, .png and .webp formats are supported."
     ),
   categoria: z.string().refine((categoria) => categoria !== "Selecione uma categoria", "O campo categoria não pode ser vazio"),
+  quantidade: z.number().int().positive("O campo quantidade não pode ser vazio ou negativo"),
 });
 
 export default function BookRegister(props) {
@@ -46,22 +47,28 @@ export default function BookRegister(props) {
   async function Cadastra(data) {
     console.log(data);
     try {
-      toast.loading("Cadastrando livro...")
-      await api.post("/books", {
-        titulo: data.titulo,
-        autor: data.autor,
-        categoria: data.categoria,
-        capa: data.image[0]
-      })
-      toast.dismiss()
-      toast.success("Livro cadastrado com sucesso!")
-      
-    } catch(error) {
-      console.log(error)
-      toast.error("Erro ao cadastrar livro!")
+      toast.loading('Cadastrando livro...');
+      const formData = new FormData();
+      formData.append('titulo', data.titulo);
+      formData.append('autor', data.autor);
+      formData.append('categoria', data.categoria);
+      formData.append('capa', data.image[0]);
+      formData.append('quantidade', data.quantidade ? data.quantidade : 1);
+  
+      await api.post('/books', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+  
+      toast.dismiss();
+      toast.success('Livro cadastrado com sucesso!');
+    } catch (error) {
+      console.log(error);
+      toast.error('Erro ao cadastrar livro!');
     }
-
   }
+
   function erroCadastro(data){
     console.log("ERO")
     console.log(data);
@@ -167,6 +174,23 @@ export default function BookRegister(props) {
                 </Form.Text>
               )}
             </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>Quantidade</Form.Label>
+              <Form.Control
+                type="number"
+                min="1"
+                step="1"
+                placeholder="Digite a quantidade de livros"
+                {...register('+quantidade')}
+              />
+              {errors?.quantidade && (
+                <Form.Text className="text-danger">
+                  {errors.quantidade.message}
+                </Form.Text>
+              )}
+            </Form.Group>
+
             <Form.Group>
               <Button variant="primary" type="submit">
                 Cadastrar

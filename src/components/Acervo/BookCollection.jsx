@@ -61,6 +61,33 @@ export default function BookCollection() {
     }
   }, [books, searchText]);
 
+  async function Deleta(livro) {
+    console.log(livro)
+    try {
+      await api.delete(`/books/${livro}`);
+      toast.success("Livro deletado com sucesso");
+      setBooks((books.filter((book) => book.id !== livro)));
+    } catch {
+      toast.error("Erro ao deletar livro");
+    }
+  }
+
+  async function Edita(livro, dados) {
+    try {
+      const response = await api.put(`/books/${livro.id}`, {
+        titulo: dados.titulo,
+        autor: dados.autor, 
+        capa: dados.capa, 
+        categoria: dados.ano,
+        quantidade: dados.quantidade
+      });
+      toast.success("Livro editado com sucesso");
+      console.log(response);
+    } catch {
+      toast.error("Erro ao editar livro");
+    }
+  }
+
   async function Solicita(livro) {
     try {
       const response = await api.post("/requests", {
@@ -196,6 +223,33 @@ export default function BookCollection() {
                         Solicitar
                       </Button>
                     )}
+                    {
+                      user.tipo === 1 ? (
+                        <>
+                          <Button 
+                            variant="warning" 
+                            style={{ marginTop: "10px", marginBottom: "10px" }}
+                            onClick={() => {
+                              if (window.confirm(
+                                  'Tem certeza de que deseja EDITAR esse livro?'
+                                )) Edita(livro.id)
+                            }}
+                          >
+                            Editar
+                          </Button>
+                          <Button 
+                            variant="danger" 
+                            onClick={() => {
+                              if (window.confirm(
+                                'Tem certeza de que deseja EXCLUIR esse livro?'
+                              )) Deleta(livro.id)
+                            }}
+                          >
+                            Excluir
+                          </Button>
+                        </>
+                      ) : null
+                    }
 
                   </Card.Body>
                 </Card>

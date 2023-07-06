@@ -12,6 +12,24 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 
+import "./styles-menuleft.css";
+import { NavLink } from "react-bootstrap";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+
+// components
+import ContactModal from "../Contato/Contact";
+import BookRegister from "../bookregister/bookRegister";
+
+// icons
+import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
+import InfoIcon from "@mui/icons-material/Info";
+import AboutUs from "@mui/icons-material/Diversity1";
+import { Book } from "@mui/icons-material";
+
+
 function Nav() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const { user, logout } = useContext(AuthContext);
@@ -65,8 +83,54 @@ function Nav() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              <MenuItem onClick={handleLogout}>
-                <Typography textAlign="center">Logout</Typography>
+              <MenuItem >
+              
+             
+
+                <List className="menuMobile">
+                <Typography onClick={handleLogout} className="menu-text" textAlign="center">Logout</Typography>
+        <NavLink
+          className="menu-left-items"
+          onClick={() => {
+            window.location.href = "/dashboard";
+          }}>
+          <ListItem button>
+            <MenuBookIcon className="menu-icons" />
+            <ListItemText primary="Acervo" className="menu-text" />
+          </ListItem>
+        </NavLink>
+
+        {
+          user?.tipo === 1 ?
+            <BookRegister />
+          : null
+        }
+        
+        <NavLink
+          className="menu-left-items"
+          onClick={() => {
+            window.location.href = "/solicitacoes";
+          }}>
+          <ListItem button>
+            <LibraryBooksIcon className="menu-icons" />
+            <ListItemText primary="Solicitações" className="menu-text" />
+          </ListItem>
+        </NavLink>
+        <ListItem>
+          <ContactModal />
+        </ListItem>
+        <NavLink
+          className="menu-left-items"
+          onClick={() => {
+            window.location.href = "/sobre";
+          }}>
+          <ListItem button>
+            <AboutUs className="menu-icons" />
+            <ListItemText primary="Sobre nós" className="menu-text" />
+          </ListItem>
+        </NavLink>
+      </List>
+
               </MenuItem>
             </Menu>
           </Box>

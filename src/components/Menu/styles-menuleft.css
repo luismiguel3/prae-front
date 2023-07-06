@@ -11,6 +11,11 @@
   }
 }
 
+.menuMobile{
+  background-color: #004E80;
+  border-radius: 12px;
+}
+
 .menu-left-items {
   justify-content: center;
   font-size: 12px;

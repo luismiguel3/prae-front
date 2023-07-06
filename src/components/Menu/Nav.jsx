@@ -15,7 +15,6 @@ import MenuItem from '@mui/material/MenuItem';
 function Nav() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const { user, logout } = useContext(AuthContext);
-  console.log(user)
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -36,7 +35,7 @@ function Nav() {
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, justifyContent: 'flex-start' }}>
             <Typography variant="body1" sx={{ my: 2, color: 'white', display: 'block' }}>
-              {user.name}
+              {user?.name}
             </Typography>
             <IconButton
               size="large"
@@ -74,13 +73,13 @@ function Nav() {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-end' }}>
             <Typography variant="body1" sx={{ my: 2, color: 'white', display: 'block', marginRight: '50px', marginTop: '20px'}}>
               {
-                user.tipo === 1 ?
+                user?.tipo === 1 ?
                   "Administrador"
-                : user.tipo === 2 ?
+                : user?.tipo === 2 ?
                   "Gestor"
                 :
                   "Usuário"
-              }: {user.nome}
+              }: {user?.nome}
             </Typography>
             <Button onClick={handleLogout} sx={{ my: 2, color: 'white', display: 'block' }}>
               Sair

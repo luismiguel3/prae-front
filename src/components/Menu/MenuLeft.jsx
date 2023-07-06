@@ -46,7 +46,7 @@ export default function MenuLeft() {
         </NavLink>
 
         {
-          user.tipo === 1 ?
+          user?.tipo === 1 ?
             <BookRegister />
           : null
         }

@@ -5,6 +5,7 @@ import { AuthProvider, AuthContext } from "../context/auth";
 import  Login  from "../pages/Login";
 import Cadastro from "../pages/Cadastro";
 import Dashboard from "../pages/Dashboard";
+import Solicitacoes from "../pages/Solicitacoes";
 
 const RoutesFunction = () => {
     const Private = ({ children, permission }) => {
@@ -36,6 +37,9 @@ const RoutesFunction = () => {
                         </Private>
                     }
                 />
+                <Route path="/solicitacoes" element={<Solicitacoes/>} />
+                <Route path="*" element={<h1>Not Found 404</h1>} />
+
                 
                {/*
                 <Route
@@ -47,41 +51,7 @@ const RoutesFunction = () => {
                     }
                 />
                 
-                <Route
-                    path="/questions"
-                    element={
-                        <Private>
-                            <Questions />
-                        </Private>
-                    }
-                />
-
-                <Route
-                    path="/users"
-                    element={
-                        <Private>
-                            <Users />
-                        </Private>
-                    }
-                />
-
-                <Route
-                    path="/quiz"
-                    element={
-                        <Private>
-                            <Quiz />
-                        </Private>
-                    }
-                />
-
-                <Route
-                    path="/filter"
-                    element={
-                        <Private>
-                            <Filter />
-                        </Private>
-                    }
-                />
+            
                 */}
             </Routes>
         </AuthProvider>
